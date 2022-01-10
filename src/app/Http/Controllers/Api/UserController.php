@@ -42,7 +42,11 @@ class UserController extends Controller
     public function show($id)
     {
         //
-
+        return [
+            'id' => $id,
+            'user' => 'mario',
+            'email' => 'marionascimentojunior@hotmail.com'
+        ];
     }
 
     /**
@@ -55,6 +59,10 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        return [
+            'dados' => $request->all(),
+            'message' = 'registro atializado com sucesso'
+        ];
     }
 
     /**

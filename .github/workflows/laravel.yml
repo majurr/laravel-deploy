@@ -19,13 +19,13 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install Docker
       run: docker-compose up -d --build
-    - name: Install Dependencies
-      run: docker exec -it laravel-deploy_php-fpm_1 composer install
     - name: Up Containers
       run: |
         docker start laravel-deploy_redis_1
         docker start laravel-deploy_php-fpm_1
         docker start laravel-deploy_webserver_1
+    - name: Install Dependencies
+      run: docker exec -it laravel-deploy_php-fpm_1 composer install
     - name: Configure Application
       run: |
         docker exec -it laravel-deploy_php-fpm_1 php artisan key:generate

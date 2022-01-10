@@ -20,14 +20,14 @@ jobs:
     - name: Install Docker
       run: docker-compose up -d --build
     - name: Install Dependencies
-      run: docker exec -it laravel-deploy_php-fpm_1 composer install    
-    - name: Configure Application
-      run: |
-        docker exec -it laravel-deploy_php-fpm_1 php artisan key:generate
-        docker exec -it laravel-deploy_php-fpm_1 php artisan cache:clear
-        docker exec -it laravel-deploy_php-fpm_1 php artisan config:clear
-        docker exec -it laravel-deploy_php-fpm_1 php artisan config:cache
-        docker exec -it laravel-deploy_php-fpm_1 php artisan storage:link      
+      run: docker exec -it laravel-deploy_php-fpm_1 composer install
+    # - name: Configure Application
+    #   run: |
+    #     docker exec -it laravel-deploy_php-fpm_1 php artisan key:generate
+    #     docker exec -it laravel-deploy_php-fpm_1 php artisan cache:clear
+    #     docker exec -it laravel-deploy_php-fpm_1 php artisan config:clear
+    #     docker exec -it laravel-deploy_php-fpm_1 php artisan config:cache
+    #     docker exec -it laravel-deploy_php-fpm_1 php artisan storage:link      
     - name: Directory Permissions
       run: docker exec -it laravel-deploy_php-fpm_1 chmod -R 777 storage bootstrap/cache
     - name: Create Database

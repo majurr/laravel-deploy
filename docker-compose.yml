@@ -1,0 +1,23 @@
+###############################################################################
+#                               Generated on 4dev                             #
+###############################################################################
+version: '3.1'
+services:
+    redis:
+        image: 'redis:alpine'
+
+    webserver:
+        image: 'nginx:alpine'
+        working_dir: /api
+        volumes:
+            - './src:/api'
+            - './.docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf'
+        ports:
+            - '8000:80'
+
+    php-fpm:
+        build: .docker/php-fpm
+        working_dir: /api
+        volumes:
+            - './src:/api'
+            - './.docker/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini'

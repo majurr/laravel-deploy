@@ -25,7 +25,7 @@ jobs:
         docker start laravel-deploy_php-fpm_1
         docker start laravel-deploy_webserver_1
     - name: Install Dependencies
-      run: composer install
+      run: docker exec -it laravel-deploy_php-fpm_1 php artisan
     # - name: Configure Application
     #   run: |
     #     docker exec -it laravel-deploy_php-fpm_1 php artisan key:generate

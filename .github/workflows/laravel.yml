@@ -25,20 +25,20 @@ jobs:
         docker start laravel-deploy_php-fpm_1
         docker start laravel-deploy_webserver_1
     - name: Install Dependencies
-      run: docker exec -it laravel-deploy_php-fpm_1 composer install
-    - name: Configure Application
-      run: |
-        docker exec -it laravel-deploy_php-fpm_1 php artisan key:generate
-        docker exec -it laravel-deploy_php-fpm_1 php artisan cache:clear
-        docker exec -it laravel-deploy_php-fpm_1 php artisan config:clear
-        docker exec -it laravel-deploy_php-fpm_1 php artisan config:cache
-        docker exec -it laravel-deploy_php-fpm_1 php artisan storage:link      
-    - name: Directory Permissions
-      run: docker exec -it laravel-deploy_php-fpm_1 chmod -R 777 storage bootstrap/cache
-    - name: Create Database
-      run: |
-        docker exec -it laravel-deploy_php-fpm_1 mkdir -p database
-        docker exec -it laravel-deploy_php-fpm_1 touch database/database.sqlite
+      run: composer install
+    # - name: Configure Application
+    #   run: |
+    #     docker exec -it laravel-deploy_php-fpm_1 php artisan key:generate
+    #     docker exec -it laravel-deploy_php-fpm_1 php artisan cache:clear
+    #     docker exec -it laravel-deploy_php-fpm_1 php artisan config:clear
+    #     docker exec -it laravel-deploy_php-fpm_1 php artisan config:cache
+    #     docker exec -it laravel-deploy_php-fpm_1 php artisan storage:link      
+    # - name: Directory Permissions
+    #   run: docker exec -it laravel-deploy_php-fpm_1 chmod -R 777 storage bootstrap/cache
+    # - name: Create Database
+    #   run: |
+    #     docker exec -it laravel-deploy_php-fpm_1 mkdir -p database
+    #     docker exec -it laravel-deploy_php-fpm_1 touch database/database.sqlite
     #- name: Execute tests (Unit and Feature tests) via PHPUnit
     #  env:
     #    DB_CONNECTION: sqlite
